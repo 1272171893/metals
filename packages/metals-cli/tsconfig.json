@@ -22,5 +22,5 @@
     "typeRoots": ["./node_modules/@types", "./types"],
     "paths": { "@": ["./src/*"], "~": ["./types/*"]  }
   },
-  "include": ["./src/**/*.ts", "./src/**/*.d.ts", "./types/**/*.d.ts"]
+  "include": ["./src/**/*.ts", "./src/**/*.d.ts", "./types/**/*.d.ts", "bin/index.js"]
 }
