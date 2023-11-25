@@ -2,13 +2,14 @@ import { promptAsync } from "../utils/process";
 import { pathExistsSync, emptyDirSync } from "fs-extra";
 import { onCancel, getTargetPath } from "../utils/process";
 import { createType } from "../utils/constant";
+import createAction from "./createAction";
 export default async function (cmd: any, name: string) {
   const result = await promptAsync([
     {
       type: () => (!name ? "text" : null),
       name: "name",
       message: "create a new project?",
-      validate: () => true,
+      validate: (value) => !!value,
     },
     {
       type: (prev) =>
@@ -25,16 +26,22 @@ export default async function (cmd: any, name: string) {
       type: "text",
       name: "describe",
       message: "please enter a project description ...",
-      validate: () => true,
+      validate: (value) => !!value,
     },
     {
       type: "select",
       name: "type",
-      message: "please enter a project description ...",
+      message: "please select the initialization type?",
       choices: createType,
-      validate: () => true,
+      validate: (value) => !!value,
     },
   ]);
   result.name = !name ? result.name : name;
-  console.log("cmd", cmd, result);
+  if (!createAction[result.type]) {
+    console.log(
+      `unmatched ${result.type} initialization type, program exiting ...`
+    );
+    onCancel();
+  }
+  createAction[result.type](result);
 }
