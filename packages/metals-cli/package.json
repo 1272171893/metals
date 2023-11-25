@@ -1,0 +1,26 @@
+{
+  "name": "metals-cli",
+  "version": "1.0.0",
+  "description": "辅助类工具",
+  "keywords": [],
+  "main": "./lib/index.js",
+  "bin": {
+    "metals-cli": "./lib/index.js"
+  },
+  "scripts": {
+    "build": "ts-node ./src/build.ts",
+    "link": "npm run build && npm link"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "chalk": "^5.3.0",
+    "esbuild": "^0.19.5",
+    "fs-extra": "^11.1.1",
+    "glob": "^10.3.10",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@types/node": "^20.9.2",
+    "ts-node": "^10.9.1"
+  }
+}
