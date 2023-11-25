@@ -6,7 +6,8 @@ export const onCancel: () => never = () => process.exit();
 // 项目目录
 export const cwd: string = process.cwd();
 // 根据配置的目标路径
-export const targetCwd: string = resolve(cwd, config.root);
+export const getTargetPath: (src?: string) => string = (src = "") =>
+  resolve(cwd, config.root || "src", src);
 // 将prompt转换成同步
 export const promptAsync = async (
   cmd: prompts.PromptObject<string> | prompts.PromptObject<string>[]
